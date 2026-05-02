@@ -34,9 +34,9 @@ export function LoadingScreen() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="text-6xl font-bold gradient-text"
+              className="text-5xl md:text-6xl font-bold gradient-text"
             >
-              DA
+              Crafting Ideas
             </motion.div>
 
             {/* Loading bar */}
