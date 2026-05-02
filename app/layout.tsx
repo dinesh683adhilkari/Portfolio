@@ -35,11 +35,11 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/dinesh1.jpg',
-        type: 'image/jpeg',
+        url: '/dinesh-signature.svg',
+        type: 'image/svg+xml',
       },
     ],
-    apple: '/dinesh1.jpg',
+    apple: '/dinesh-signature.svg',
   },
 }
 

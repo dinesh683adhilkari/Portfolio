@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Sun, Moon } from "lucide-react"
 import { useTheme } from "@/components/theme-provider"
@@ -44,12 +45,21 @@ export function Navbar() {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link href="#home">
-          <motion.span
+          <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold gradient-text cursor-pointer"
+            className="flex items-center gap-3 cursor-pointer"
           >
-            DA
-          </motion.span>
+            <div className="w-12 h-12 rounded-full glass flex items-center justify-center overflow-hidden">
+              <Image
+                src="/dinesh-signature.svg"
+                alt="Dinesh signature logo"
+                width={40}
+                height={40}
+                className="object-contain"
+              />
+            </div>
+            <span className="text-2xl font-bold gradient-text">Dinesh</span>
+          </motion.div>
         </Link>
 
         {/* Desktop Menu */}
