@@ -4,8 +4,8 @@ import { motion } from "framer-motion"
 import { FaGithub, FaLinkedin, FaEnvelope, FaArrowUp, FaHeart } from "react-icons/fa"
 
 const socialLinks = [
-  { icon: FaGithub, href: "https://github.com", label: "GitHub" },
-  { icon: FaLinkedin, href: "https://linkedin.com", label: "LinkedIn" },
+  { icon: FaGithub, href: "https://github.com/dinesh16adh", label: "GitHub" },
+  { icon: FaLinkedin, href: "https://www.linkedin.com/in/dinesh-adhikari16", label: "LinkedIn" },
   { icon: FaEnvelope, href: "mailto:dinesh683adhikari@gmail.com", label: "Email" },
 ]
 

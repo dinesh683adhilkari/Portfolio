@@ -15,8 +15,8 @@ const contactInfo = [
   {
     icon: FaPhone,
     label: "Phone",
-    value: "+977 98XXXXXXXX",
-    href: "tel:+97798XXXXXXXX",
+    value: "+977 9806131172",
+    href: "tel:+9779806131172",
   },
   {
     icon: FaMapMarkerAlt,

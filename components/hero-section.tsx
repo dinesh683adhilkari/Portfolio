@@ -139,8 +139,8 @@ export function HeroSection() {
               className="flex gap-4 justify-center lg:justify-start"
             >
               {[
-                { icon: FaGithub, href: "https://github.com", label: "GitHub" },
-                { icon: FaLinkedin, href: "https://linkedin.com", label: "LinkedIn" },
+                { icon: FaGithub, href: "https://github.com/dinesh16adh", label: "GitHub" },
+                { icon: FaLinkedin, href: "https://www.linkedin.com/in/dinesh-adhikari16", label: "LinkedIn" },
                 { icon: FaEnvelope, href: "mailto:dinesh683adhikari@gmail.com", label: "Email" },
               ].map((social) => (
                 <motion.a

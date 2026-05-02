@@ -3,9 +3,27 @@
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
-import { FaBriefcase, FaUsers, FaTrophy, FaCertificate } from "react-icons/fa"
+import { FaBriefcase, FaUsers, FaTrophy, FaCertificate, FaCode } from "react-icons/fa"
 
 const experiences = [
+  {
+    title: "Junior Full Stack Developer",
+    company: "Hallow Tech",
+    period: "Aug 2025 - Present",
+    description:
+      "Developed and maintained full-stack web applications using modern JavaScript technologies. Built responsive frontend interfaces with React.js and implemented backend services and RESTful APIs using Node.js and Express.js. Worked with MongoDB/MySQL, authentication systems, Git, and Agile development practices.",
+    type: "work",
+    icon: FaBriefcase,
+  },
+  {
+    title: "Full Stack Development Intern",
+    company: "Hallow Tech",
+    period: "Apr 2025 - Aug 2025",
+    description:
+      "Assisted in developing full-stack web applications using React.js and Node.js. Worked with MongoDB/MySQL for database operations and participated in debugging, testing, and application improvement tasks.",
+    type: "internship",
+    icon: FaCode,
+  },
   {
     title: "Project-Based Data Analyst",
     company: "Karma Ops",
