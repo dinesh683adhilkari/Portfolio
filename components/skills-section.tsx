@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import {
   FaHtml5,
   FaCss3Alt,
@@ -78,6 +78,16 @@ const skillCategories = [
 export function SkillsSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [stackedCategories, setStackedCategories] = useState(skillCategories)
+
+  const handleCardClick = (clickedIndex: number) => {
+    setStackedCategories((prev) => {
+      const next = [...prev]
+      const [selected] = next.splice(clickedIndex, 1)
+      next.push(selected)
+      return next
+    })
+  }
 
   return (
     <section id="skills" className="py-20 relative">
@@ -97,14 +107,30 @@ export function SkillsSection() {
             Technologies and tools I work with
           </p>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {skillCategories.map((category, categoryIndex) => (
+          <div className="relative mx-auto max-w-3xl h-[460px]">
+            {stackedCategories.map((category, categoryIndex) => (
               <motion.div
                 key={category.title}
                 initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-                className="glass rounded-2xl p-6"
+                animate={
+                  isInView
+                    ? {
+                        opacity: 1,
+                        y: categoryIndex * 12,
+                        x: categoryIndex * 8,
+                        scale: 1 - categoryIndex * 0.01,
+                      }
+                    : {}
+                }
+                transition={{ duration: 0.35, delay: categoryIndex * 0.06 }}
+                whileHover={{ y: -8 }}
+                whileTap={{ scale: 0.99 }}
+                className="glass rounded-[2rem] p-6 absolute left-0 right-0 cursor-pointer shadow-2xl border border-white/10"
+                style={{
+                  zIndex: stackedCategories.length - categoryIndex,
+                  top: categoryIndex * 12,
+                }}
+                onClick={() => handleCardClick(categoryIndex)}
               >
                 <h3 className="text-xl font-semibold mb-6 text-foreground flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-primary" />
@@ -119,7 +145,7 @@ export function SkillsSection() {
                       animate={isInView ? { opacity: 1, x: 0 } : {}}
                       transition={{
                         duration: 0.3,
-                        delay: categoryIndex * 0.1 + skillIndex * 0.05,
+                        delay: categoryIndex * 0.05 + skillIndex * 0.05,
                       }}
                       className="group"
                     >
@@ -143,7 +169,7 @@ export function SkillsSection() {
                           animate={isInView ? { width: `${skill.level}%` } : {}}
                           transition={{
                             duration: 1,
-                            delay: categoryIndex * 0.1 + skillIndex * 0.05,
+                            delay: categoryIndex * 0.05 + skillIndex * 0.05,
                           }}
                           className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
                         />
