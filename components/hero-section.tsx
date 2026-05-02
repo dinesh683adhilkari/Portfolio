@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { FaGithub, FaLinkedin, FaEnvelope, FaDownload } from "react-icons/fa"
 import { HiArrowDown } from "react-icons/hi"
@@ -167,9 +168,13 @@ export function HeroSection() {
           >
             <div className="relative">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden glass p-2 glow">
-                <div className="w-full h-full rounded-full bg-gradient-to-br from-primary via-accent to-primary flex items-center justify-center text-6xl font-bold text-primary-foreground">
-                  DA
-                </div>
+                <Image
+                  src="/dinesh.jpg"
+                  alt="Dinesh Adhikari"
+                  width={320}
+                  height={320}
+                  className="w-full h-full object-cover rounded-full"
+                />
               </div>
               {/* Floating elements */}
               <motion.div
