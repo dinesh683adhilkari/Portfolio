@@ -118,7 +118,8 @@ export function HeroSection() {
                 <HiArrowDown className="animate-bounce" />
               </a>
               <a
-                href="#"
+                href="/Dinesh%20Adhikari%20(2).pdf"
+                download
                 className="px-6 py-3 rounded-lg glass border border-primary/30 text-foreground font-medium hover:bg-primary/10 transition-colors flex items-center gap-2"
               >
                 <FaDownload />
