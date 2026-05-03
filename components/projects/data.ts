@@ -10,6 +10,9 @@ export const dataProjects = [
       "Visualizations",
     ],
     tech: ["Python", "Pandas", "Matplotlib"],
+
+    thumbnail: "/Income.png",
+
     github:
       "https://github.com/dinesh16adh/Data-Science-Projects/tree/master/Income%20Data",
     demo:
@@ -26,6 +29,7 @@ export const dataProjects = [
       "Survival analysis",
       "Data storytelling",
     ],
+    thumbnail: "/Titanic.png",
     tech: ["Python", "scikit-learn", "Seaborn"],
     github:
       "https://github.com/dinesh16adh/Data-Science-Projects/tree/master/Titanic%20Data%20Analysis",
@@ -34,3 +38,4 @@ export const dataProjects = [
     gradient: "from-primary via-accent to-secondary",
   },
 ]
+

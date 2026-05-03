@@ -21,24 +21,24 @@ const renderProjectCard = (project: any, index: number, isInView: boolean) => (
     whileHover={{ y: -10 }}
     className="glass rounded-2xl overflow-hidden group"
   >
-    <div
-      className={`h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}
-    >
-      <div className="absolute inset-0 bg-black/20" />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <span className="text-4xl font-bold text-white/90 group-hover:scale-110 transition-transform">
-          {project.title.split(" ")[0]}
-        </span>
-      </div>
+    <div className="h-48 relative overflow-hidden group">
+      <img
+        src={project.thumbnail}
+        alt={`${project.title} thumbnail`}
+        className="h-full w-full object-cover group-hover:scale-110 transition-all duration-500 brightness-75 group-hover:brightness-100"
+        loading="lazy"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+      {/* Title text overlay removed */}
       <motion.div
         animate={{ y: [0, -5, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
-        className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10"
+        className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm"
       />
       <motion.div
         animate={{ y: [0, 5, 0] }}
         transition={{ duration: 2.5, repeat: Infinity }}
-        className="absolute bottom-4 left-4 w-6 h-6 rounded-full bg-white/10"
+        className="absolute bottom-4 left-4 w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm"
       />
     </div>
 
