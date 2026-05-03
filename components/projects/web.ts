@@ -30,7 +30,7 @@ export const webProjects = [
     ],
     tech: ["Next.js", "Tailwind CSS", "JavaScript"],
 
-    thumbnail: "/placeholder.jpg",
+    thumbnail: "/Fresh.jpg",
 
     github: "https://github.com/dinesh16adh/fresh-khaja",
     demo: "https://github.com/dinesh16adh/fresh-khaja",
