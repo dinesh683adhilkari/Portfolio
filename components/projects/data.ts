@@ -10,7 +10,11 @@ export const dataProjects = [
       "Visualizations",
     ],
     tech: ["Python", "Pandas", "Matplotlib"],
+
+    thumbnail: "/placeholder.svg",
+
     github:
+
       "https://github.com/dinesh16adh/Data-Science-Projects/tree/master/Income%20Data",
     demo:
       "https://github.com/dinesh16adh/Data-Science-Projects/tree/master/Income%20Data",

@@ -11,6 +11,9 @@ export const webProjects = [
       "Responsive UI",
     ],
     tech: ["React.js", "CSS", "JavaScript"],
+
+    thumbnail: "/local.png",
+
     github: "https://github.com/dinesh16adh/Local-artisian-market-place",
     demo: "https://github.com/dinesh16adh/Local-artisian-market-place",
     gradient: "from-primary to-accent",
@@ -26,6 +29,9 @@ export const webProjects = [
       "Modern design",
     ],
     tech: ["Next.js", "Tailwind CSS", "JavaScript"],
+
+    thumbnail: "/placeholder.jpg",
+
     github: "https://github.com/dinesh16adh/fresh-khaja",
     demo: "https://github.com/dinesh16adh/fresh-khaja",
     gradient: "from-accent to-primary",
