@@ -1,51 +1,78 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef, useState } from "react"
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from "react-icons/fa"
+import { motion } from 'framer-motion'
+import { useInView } from 'framer-motion'
+import { useRef, useState, useEffect } from 'react'
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa'
+import emailjs from '@emailjs/browser';
+import { useToast } from '@/hooks/use-toast';
 
 const contactInfo = [
   {
     icon: FaEnvelope,
-    label: "Email",
-    value: "dinesh683adhikari@gmail.com",
-    href: "mailto:dinesh683adhikari@gmail.com",
+    label: 'Email',
+    value: 'dinesh683adhikari@gmail.com',
+    href: 'mailto:dinesh683adhikari@gmail.com',
   },
   {
     icon: FaPhone,
-    label: "Phone",
-    value: "+977 9806131172",
-    href: "tel:+9779806131172",
+    label: 'Phone',
+    value: '+977 9806131172',
+    href: 'tel:+9779806131172',
   },
   {
     icon: FaMapMarkerAlt,
-    label: "Location",
-    value: "Baneshwor, Kathmandu, Nepal",
-    href: "#",
+    label: 'Location',
+    value: 'Baneshwor, Kathmandu, Nepal',
+    href: '#',
   },
-]
+];
+
+const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
+const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
+const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
 
 export function ContactSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      emailjs.init(publicKey);
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    setIsSubmitting(false)
-    setFormState({ name: "", email: "", subject: "", message: "" })
-    alert("Thank you for your message! I'll get back to you soon.")
-  }
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      if (!formRef.current) return;
+      await emailjs.sendForm(serviceId, templateId, formRef.current, publicKey);
+      toast({
+        title: 'Message Sent!',
+        description: 'Thank you! I will get back to you soon.',
+      });
+      setFormState({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      toast({
+        title: 'Failed to Send',
+        description: 'Please try again or email directly.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section id="contact" className="py-20 relative">
@@ -64,7 +91,6 @@ export function ContactSection() {
           </p>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -73,13 +99,12 @@ export function ContactSection() {
             >
               <div className="glass rounded-2xl p-8">
                 <h3 className="text-2xl font-semibold mb-6 text-foreground">
-                  Let&apos;s Connect
+                  Let's Connect
                 </h3>
                 <p className="text-muted-foreground mb-8 leading-relaxed">
-                  I&apos;m always open to discussing new projects, creative ideas, or
+                  I'm always open to discussing new projects, creative ideas, or
                   opportunities to be part of your vision.
                 </p>
-
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (
                     <motion.a
@@ -103,7 +128,6 @@ export function ContactSection() {
                 </div>
               </div>
 
-              {/* Map placeholder */}
               <div className="glass rounded-2xl p-4 h-48 flex items-center justify-center">
                 <div className="text-center">
                   <FaMapMarkerAlt className="mx-auto text-primary mb-2" size={32} />
@@ -112,13 +136,12 @@ export function ContactSection() {
               </div>
             </motion.div>
 
-            {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <form onSubmit={handleSubmit} className="glass rounded-2xl p-8">
+              <form ref={formRef} id="contact-form" onSubmit={handleSubmit} className="glass rounded-2xl p-8">
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div>
                     <label
@@ -130,6 +153,7 @@ export function ContactSection() {
                     <input
                       type="text"
                       id="name"
+                      name="user_name"
                       value={formState.name}
                       onChange={(e) =>
                         setFormState({ ...formState, name: e.target.value })
@@ -149,6 +173,7 @@ export function ContactSection() {
                     <input
                       type="email"
                       id="email"
+                      name="user_email"
                       value={formState.email}
                       onChange={(e) =>
                         setFormState({ ...formState, email: e.target.value })
@@ -170,6 +195,7 @@ export function ContactSection() {
                   <input
                     type="text"
                     id="subject"
+                    name="subject"
                     value={formState.subject}
                     onChange={(e) =>
                       setFormState({ ...formState, subject: e.target.value })
@@ -189,6 +215,7 @@ export function ContactSection() {
                   </label>
                   <textarea
                     id="message"
+                    name="message"
                     rows={5}
                     value={formState.message}
                     onChange={(e) =>
@@ -208,7 +235,7 @@ export function ContactSection() {
                   className="w-full py-4 rounded-lg bg-primary text-primary-foreground font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed glow"
                 >
                   {isSubmitting ? (
-                    "Sending..."
+                    'Sending...'
                   ) : (
                     <>
                       Send Message
@@ -222,5 +249,6 @@ export function ContactSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
+
