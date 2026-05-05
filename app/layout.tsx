@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Space_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
+import { BranchProvider } from '@/hooks/use-branch-context'
 import './globals.css'
 
 const inter = Inter({ 
@@ -64,10 +65,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <BranchProvider>
+            {children}
+          </BranchProvider>
+          {process.env.NODE_ENV === 'production' && <Analytics />}
         </ThemeProvider>
-        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )
 }
+
