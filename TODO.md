@@ -1,9 +1,11 @@
-# TODO: Make proper thumbnails for projects (no text on thumbnails)
+# EmailJS Contact Form Implementation
 
-- [x] Step 1: Update components/projects/data.ts with proper thumbnails (Income.png, Titanic.png)
-- [x] Step 2: Update components/projects/web.ts with proper thumbnail for Fresh Khaja (Fresh.jpg)
-- [x] Step 3: Edit components/projects-section.tsx to remove title text overlay on thumbnails
-- [x] Step 4: Test and complete
+## Steps:
+- [x] Install EmailJS dependency (in package.json)
+- [x] Create .env.local with credentials (confirmed)
+- [x] Update components/contact-section.tsx with EmailJS + toast
+- [ ] Test form
+- [ ] Commit & PR
 
-✅ Task completed!
+**Status:** Ready for code update. Keys: NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=-XGqeJZ54zi304fTP, SERVICE_ID=service_15la16k, TEMPLATE_ID=template_n2d2gu5
 
