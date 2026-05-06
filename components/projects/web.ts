@@ -36,4 +36,22 @@ export const webProjects = [
     demo: "https://github.com/dinesh16adh/fresh-khaja",
     gradient: "from-accent to-primary",
   },
+  {
+  title: "IT Pro Entrance",
+  description:
+    "A modern educational platform designed to help students prepare for IT entrance exams with interactive resources and a user-friendly interface.",
+  features: [
+    "Course browsing",
+    "Mock test system",
+    "Responsive layout",
+    "Modern UI/UX",
+  ],
+  tech: ["Next.js", "Tailwind CSS", "JavaScript"],
+
+  thumbnail: "/Itproentrace.png",
+
+  github: "https://itpro-entrance.com",
+  demo: "https://itpro-entrance.com",
+  gradient: "from-accent to-primary",
+},
 ]
