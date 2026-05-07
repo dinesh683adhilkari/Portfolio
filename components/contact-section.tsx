@@ -2,11 +2,12 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
+
 import { useRef, useState, useEffect } from 'react'
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa'
 import emailjs from '@emailjs/browser';
 import { useToast } from '@/hooks/use-toast';
-import { SuccessMessageDialog } from './success-message-dialog';
+
 import { useBranch } from '@/hooks/use-branch-context';
 
 const contactInfo = [
@@ -45,9 +46,9 @@ export function ContactSection() {
   });
   const formRef = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const { toast } = useToast();
   const { branchName } = useBranch();
+
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -63,14 +64,10 @@ export function ContactSection() {
       await emailjs.sendForm(serviceId, templateId, formRef.current, publicKey);
       toast({
         title: 'Message Sent!',
-        description: 'Opening success dialog...',
+        description: 'Thanks! Your message has been sent successfully.',
       });
-      // Store form data before reset for dialog
-      const submittedName = formState.name;
-      const submittedSubject = formState.subject;
       setFormState({ name: '', email: '', subject: '', message: '' });
-      setShowSuccessDialog(true);
-      // Trigger re-render with local state if needed, but since dialog uses props
+
     } catch (error) {
       console.error('EmailJS error:', error);
       toast({
@@ -253,14 +250,8 @@ export function ContactSection() {
                   )}
                 </motion.button>
               </form>
-              <SuccessMessageDialog
-                isOpen={showSuccessDialog}
-                onOpenChange={setShowSuccessDialog}
-                name={formState.name}
-                subject={formState.subject}
-                branchName={branchName || 'main'}
-              />
             </motion.div>
+
           </div>
         </motion.div>
       </div>
