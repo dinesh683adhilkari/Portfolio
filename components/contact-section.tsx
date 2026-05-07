@@ -9,6 +9,8 @@ import emailjs from '@emailjs/browser';
 import { useToast } from '@/hooks/use-toast';
 
 import { useBranch } from '@/hooks/use-branch-context';
+import { SuccessContactDialog } from './success-contact-dialog';
+
 
 const contactInfo = [
   {
@@ -48,9 +50,10 @@ export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const { branchName } = useBranch();
-
+  const [successOpen, setSuccessOpen] = useState(false);
 
   useEffect(() => {
+
     if (typeof window !== 'undefined') {
       emailjs.init(publicKey);
     }
@@ -62,13 +65,17 @@ export function ContactSection() {
     try {
       if (!formRef.current) return;
       await emailjs.sendForm(serviceId, templateId, formRef.current, publicKey);
+      const submittedName = formState.name;
+
       toast({
         title: 'Message Sent!',
         description: 'Thanks! Your message has been sent successfully.',
       });
       setFormState({ name: '', email: '', subject: '', message: '' });
+      setSuccessOpen(true);
 
     } catch (error) {
+
       console.error('EmailJS error:', error);
       toast({
         title: 'Failed to Send',
@@ -253,9 +260,17 @@ export function ContactSection() {
             </motion.div>
 
           </div>
+
+          <SuccessContactDialog
+            open={successOpen}
+            onOpenChange={setSuccessOpen}
+            name={formState.name}
+          />
+
         </motion.div>
       </div>
     </section>
+
   );
 }
 
